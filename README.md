@@ -1,4 +1,4 @@
-This can generate a Gofile (for https://github.com/joewalnes/go-getter) from all files (recursive) in the current directory.
+This can generate a Gofile (for https://github.com/joewalnes/go-getter) from all imported packages (recursive) in the current directory.
 
 # Usage
 Clone the repo:
