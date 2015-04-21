@@ -3,19 +3,19 @@ This can generate a Gofile (for https://github.com/joewalnes/go-getter) from all
 # Usage
 Clone the repo:
 
-```go
+```
 go get github.com/maxwellhealth/gofile-generator
 ```
 
 Build it:
 
-```go
+```
 go build
 ```
 
 Install it:
 
-```go
+```
 go install
 ```
 
