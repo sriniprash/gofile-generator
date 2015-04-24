@@ -17,7 +17,7 @@ func appendIfMissing(slice []string, s string) []string {
 
 	spl := strings.Split(s, "/")
 
-	toKeep := []string{}
+	var toKeep []string
 	for i := 0; i < 3; i++ {
 		if len(spl) >= (i + 1) {
 			toKeep = append(toKeep, spl[i])
@@ -38,18 +38,18 @@ func appendIfMissing(slice []string, s string) []string {
 	return append(slice, repo)
 }
 func getImportsInDirectory(dir string) ([]string, error) {
-	final := []string{}
+	var final []string
 
 	d, err := os.Open(dir)
 	if err != nil {
-		return []string{}, err
+		return nil, err
 	}
 
 	defer d.Close()
 
 	read, err := d.Readdir(-1)
 	if err != nil {
-		return []string{}, err
+		return nil, err
 	}
 
 	for _, file := range read {
@@ -66,14 +66,14 @@ func getImportsInDirectory(dir string) ([]string, error) {
 		} else if file.Mode().IsRegular() && strings.HasSuffix(file.Name(), ".go") {
 			f, err := os.Open(dir + "/" + file.Name())
 			if err != nil {
-				return []string{}, err
+				return nil, err
 			}
 			defer f.Close()
 
 			buf := &bytes.Buffer{}
 			_, err = buf.ReadFrom(f)
 			if err != nil {
-				return []string{}, err
+				return nil, err
 			}
 
 			m := match.Find(buf.Bytes())
